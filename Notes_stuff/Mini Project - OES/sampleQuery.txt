@@ -1,0 +1,9 @@
+insert into login values('1111','password1' , 'department' );
+insert into login values('1122','password12' , 'examiner' );
+
+
+insert into institute values ( 'ins1' ,'INTU , NIRMA UNIVERSITY');
+
+insert into department values('dep1' , 'developers' , '1111','ins1' ,'dep1@gmail.com');
+
+select * from department d inner join login l inner join institute i on d.LoginId=l.LoginId and d.InstituteId=i.InstituteId;

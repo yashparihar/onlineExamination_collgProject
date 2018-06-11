@@ -1,0 +1,43 @@
+Online examination for MOODLE(or open source):-
+
+   MODULE(  Admin , department , Examiner, Student ) :- 
+    
+=> Admin
+
+ - can Assign/view/update/delete department and give them recommended rights/authority
+  
+   - can view/update/delete student enrollment details and their performance report
+   
+   -can view/update/delete Examiners under specific department 
+   
+   -create or verify EXAM DETAILS as of Request FROM DEPARTMENT and assign them to that exam host
+                     				
+   -Create schedule of QUESTION BANKS POSTING DATE as per each Department request	
+   
+   - EXAM POSTING DATE as requested from Department
+	
+=> Department
+
+ -Create a Exam REGISTRATION (filling exam details , schedule for exam , Examiner name and student list who would get enrollment)(Here exam details can be multiple) and request from Admin 
+  
+ -Department don't post QUESTION BANK (but instead after Acceptance of Exam REGISTRATION examiner is assigned and he has to   Post question bank)
+ 		
+ - can view/update/delete Examiner	
+ 
+ - can View/delete list of STUDENTs who enrolled for a perticular exam 
+	
+	
+=> Examiner
+
+ - Its functionality is POST QUESTION BANK, type, options, correct answers on a specific date
+ - View Student enrolled in his Hosting exam and Marks
+ 
+=> Student
+
+ - Student registration is done by department so NO registration here 
+           student are assigned and given login credentials) 
+
+ -Student Enrolls for an Exam from exam list
+ 
+ - Main role is to appear for EXAM , can review his responses to questions
+	 

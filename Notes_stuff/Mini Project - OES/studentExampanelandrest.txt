@@ -1,0 +1,40 @@
+
+
+-> Department : examinerCatalog
+                studentCatalog
+				
+-> Examiner   : studentCatalog
+                questionbankCatalog (in recently order )
+
+-> Student : its own Profile (change of his own profile and password)
+           : Scorecard page (Score in recents exam)
+           : exam panel
+
+-> admin   :  add department page
+           : department catalog
+           : examiner catalog
+           : studentCatalog
+		   
+=====================================================================================
+
+
+-> exam panel
+
+  tracked by 
+  1. Has student already started that exam then Continue (select * from studentexamappearence where studentenrollid='')
+    
+	 if student continues exam after getting off from site  , then this things are checked
+       -> if  ( exam.endtime < curtime ) then submit it automatically with  step 3
+          	 else
+  
+  
+  
+  2. student start exam->
+      -> Insert into studentexamappearence (enrollid , starttime=curtime() , null  ,  0)
+      -> session is created with timer = exam.duration minites 
+	  -> with each second timer decreases
+	  
+  3. if timer reach [00:00:00] stop the exam and update studentexamappearence endtime=curtime() and submission=1
+
+      
+	   

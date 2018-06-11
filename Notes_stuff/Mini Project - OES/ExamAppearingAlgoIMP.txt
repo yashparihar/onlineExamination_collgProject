@@ -1,0 +1,204 @@
+
+  delete from rollnoexamstate1 where StudentEnrollId='5m4'
+  
+  
+  SELECT table_name FROM information_schema.tables WHERE table_schema = 'onlineexaminationsystem' 
+	
+  
+  exam (exam details in session)
+  examinerappointed (for questionbank)
+  examiner (optional or name)
+  examschedule (for timer tracking)
+  department , institute (for naming only or optional)
+  
+  student info (session) (remain in session)
+  
+  
+
+
+5m21	15mca034	22111
+5m4 	15mca034	34 FEF
+5md 	15mca034	dd dde
+5mx1	15mca034	ex11111
+  
+  StudentEnrollId	varchar(20)
+studentstarttime	time
+studentfinishtime	time
+ExamSubmission	tinyint(1)
+lastAttempTime	time
+  
+  ----------------------
+  ALGORITHM-----------
+  -------------------------------------------------------------------------
+  class timer(String starttime,endtime ,duration , studentStarttime)
+  class examstat (String examid ,String  enrollid ,int questionno ,String questionidList[]   )
+   
+  1. exam starting fresh
+      -. initialize application(servletontext):
+	    TimerState and ExamState
+	
+     -> we have examid and studentrollno
+  
+     -> FIND studentexamEnrollid
+         [formula:- String enrollid = studuser.getStudentrollno().substring(4, 6) + examid.substring(1, 2) ]
+		 
+	 
+		 
+qry  -> INSERT record in studetnexamappearance [ values ('enrollid' , curtime(), null , 0, curtime() )  ]
+  
+       insert into studentexamappearence values('enrollid' , curtime() , null , 0 , curtime() ) 
+
+	   application[examstate].studstarttime=curtime();
+	   
+	
+	   
+
+3 qry  -> CREATE TABLE 'examRollno' --> FOLLOW FILE 'studetexamstate.txt'
+
+
+qry  -> FETCH RECORDS OF QUESTIONBANK thru Examid relating Examinerappointed INTO A LIST
+       select questionbank_id from exam e inner join examinerappointed ep on e.examid=ep.examid where examid=''
+       
+	   Resultset rs="select q.questionid from questions q where questionBank_ID = (  select questionBank_ID from examinerappointed where examid = 'exam 0404') " 
+	   
+	   while(rs.next()
+          List.add(rs.getString(0));
+		  
+
+     -> SUFFLE that List
+	 
+
+qry  -> INSERT (enrollid , questionsid , null ) into TABLE 'examRollno' from Fetched record
+           
+		 while(qno : questionno)
+		 {
+		   " insert into rollnoexamstate1 values('enrollid','List[qno]',null) "
+         }
+
+     -> Create var questionno=0 (initially)(ie. first questionid from List)
+
+	 ->  Store Exam State in Exam.application ( examid ,  enrollid , questionno , List  )
+  	 
+ 	   
+	   
+ qry    -> Set them TIMER  :- "select e.Duration,es.StartTime,es.EndTime from exam e inner join examschedule es on            e.ScheduleId=es.ScheduleId "
+      
+      -> store in timer.Application (starttime,endtime ,duration , studentStarttime)
+	  
+	  
+	  
+	  
+	 
+qry  -> FETCH Questions and Options where questionid='List[questionno]'  -->//as done in adminquestiobankPro	 
+	 
+	 
+	    select q.question, op.optionId, op.option from questions q inner join options op on q.questionId=op.questionId  where q.questionBank_ID=(select questionBank_ID from examinerappointed where examid='22111') and q.questionid='2e0c1'  ;
+	 
+	 
+	 
+  2. when clicking next...............--------------------------------------
+  
+  - [saving state of prev question]
+	  (from prev page we have :-request->seleectoptionid , application->EXAMstate and TIMERstate  )
+	  
+   -> if (selectedoptionid!=null)
+       qry -> update 'examRollno' set markedOption='selectedoptionid' where questionid='List[questionno]'
+
+	
+  - [continnuing for new question] 
+    
+    -> application[ExamState].questionno++;
+    -> Set the TIMER
+	
+qry  -> FETCH question and Options where questionid='List[questionno]' 	 
+
+        select * from examschedule
+		
+	  select questionid from sExamidRollno;
+	  
+	  
+  3. when submitting exam.............(BY SUBMITTING EXAM OR END OF TIMER)...............---------------------------
+  
+      -> update studentexamappearence set finishTime=curtime() where studentenrollid=''
+	  
+	  -> update studentexamappearence set finishTime=curtime() set examsubmission=1 where studentenrollid=''
+	 
+  	 (we need questionsattempted , rightAttempt , wrongAttempt , totalmarks , obtainedmarks , percentage)
+     -StudentEnrollId	  
+	-TotalQuestions
+	-TotalCorrectAttempt
+	-ObtainedMarks
+	-TotalMarks
+	-Percentage
+	
+	  String enrollid = studuser.getStudentrollno() + examid  ;
+        String tabname='s'+examid+studuser.getStudentrollno();
+	
+
+	(will return TotalCorrectattempt)
+	
+	  select count(*) from "+tabname+" z inner join questions q on z.questionid=q.questionid where z.markedoptionid=q.correctoptionid;
+	
+	
+	(will return TotalQuestions , TotalMarks , eachQuestionMarks )
+	
+	  select TotalQuestions, TotalMarks ,EachQuestionMarks from examinerappointed ep inner join studentexamenrollment se on ep.Examid=se.ExamId inner join questionbank qb on ep.questionBank_ID=qb.questionBank_ID where se.StudentEnrollId=enrollid ; 
+	
+	obtainedmarks = TotalCorrectAttempt * eachQuestionMarks;
+	Percentage = obtainedmarks / TotalMarks * 100;
+	
+    //(insert into Marksheet)
+	insert into studentmarksheet values (enrollid , totalquestions , totcorrectattempt , gtmarks , totmarks , percent)
+	
+	//(After successfully markedsheet Generated , delete all StudentexamsESSIONs)
+	
+	
+
+	  
+	  -->StudentMARKSHEET PROFILE:--------------
+	     examname 
+		 examdate:
+		// examBy Department:
+		 
+		 studentname 
+		 rollno
+		 
+	//	 student Starting Exam Time
+	//	 Time Taken To finish The Exam
+		 
+		 exam of marks
+		 total questions
+	
+		 Total Right Attempt
+		 Total obtained marks
+		 
+		 grade / percentage
+		 
+	 
+	 
+	 4. Timer setting.............(from rough sheet)...................................................
+	 
+	    from Application.Timer Set Time of demo2 time. 
+	 
+	    lefttime from st , 
+		
+		
+		
+		---------------------------------------------------------------------
+		
+		exam catalog
+		
+		
+		
+		on going exam:- total student enrolled
+		                total student appearing
+						
+			select count(*) from studentexamenrollment see left outer join exam ea on see.ExamId=ea.ExamId right outer join studentmarksheet sea on see.StudentEnrollId=sea.StudentEnrollId where es.examid=e.examid 			
+					
+					
+		finish exam  :- total student submitted exam
+           
+           select * from studentexamenrollment see left outer join exam e on see.ExamId=e.ExamId right outer join studentmarksheet sm on see.StudentEnrollId=sm.StudentEnrollId		   
+	 
+        -------------------------------------------------------------------------
+		

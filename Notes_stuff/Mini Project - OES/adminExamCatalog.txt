@@ -1,0 +1,51 @@
+
+
+date:- 2-3-17
+
+admin panel
+
+-> exam catalog contains
+
+1.exam request (1,2,3,4,5,approve_btn for admin)  [[ DDONE  ]]-----------------
+  fetch -> select * from exam where IsItApproved=0;
+  update -> update exam set IsItApproved=1 where examid='';
+  insert -> insert into examinerappointed values ('examid+examinerid'  , 'examinerid' , 'examid' , null );
+  
+  
+ 
+3. exam listed    (1,2,3,4,5,6,7)     [[ DONE  ]]--------------
+   fetch -> select * from exam e inner join examinerappointed ep on e.examid=ep.examid
+    
+	(shows exam deatils , question bank posted or not , total student enrolled )
+	
+	
+	
+	
+4. ongoing exam						(1,2,3,4,5,6,7,8)
+
+  (HOLD)  fetch -> select * from exam e inner join examinerappointed ep on e.examid=ep.examid where e.examdate=sysdate 
+                  
+    
+5. done exam		
+
+  (HOLD)   fetch -> select * from exam e inner join examinerappointed ep on e.examid=ep.examid where e.examdate < sysdate 
+          					
+
+exam profile:
+
+1 -exam name
+2 - exam date
+3 -conducted by department name
+4  -of marks
+5   -of duration
+   
+6 -hosted by examiner name
+7 -total student enrolled
+8 - total student appearing exam (only in ongoing exam block)
+9 -Average marks scored by all (calculate) (only in done exam block)
+
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 

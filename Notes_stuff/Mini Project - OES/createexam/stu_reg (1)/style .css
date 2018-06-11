@@ -1,0 +1,44 @@
+
+ body
+ {
+	 background-image: url(abc.jpg);
+	 background-size: 100% 600px;
+	 
+ }
+
+
+
+	table{
+ border: 1px solid black;
+ margin-top: 100px;
+ margin-right:520px;
+ border-radius: 25px;
+ }
+ 
+ .button{
+	 background-color: #cfbd97;
+	  cursor: pointer;
+	  display: inline-block;
+	  text-align: center;
+	  font-size: 25px;
+	  margin: 4px 2px;
+	   border-radius: 25px;
+	  color: brown;
+
+	 
+ }
+ 
+ .button:hover{
+	 collapse;
+	 color: white;
+ }
+ 
+ .heading{
+	 font-weight: bold;
+	 font-style: italic;
+ }
+ 
+ .c{
+	 color: brown;
+	 font-weight: bold;
+ }

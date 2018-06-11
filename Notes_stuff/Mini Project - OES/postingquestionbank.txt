@@ -1,0 +1,98 @@
+
+date:- 2-3-17
+
+
+(dept)exam requested            - insert->EXAM
+(admin)exam approved            - insert->examinerappointed links EXAM
+(examiner)created questionbank  - insert into QUESTIONBANK,QUESTION,OPTIONS
+(examiner)post question bank     - Links QQUESTIONBANK AND EXAMINERAPPOINTED by linking thru questionBank_ID
+
+
+examiner panel -> 
+
+ExamId	varchar(20)
+ExamName	text
+DeptId	varchar(20)
+ScheduleId	varchar(20)
+ExaminerId	varchar(20)
+TotalMarks	varchar(5)
+IsItApproved	tinyint(1)
+examDate	date
+Duration	varchar(4)
+
+select * from examinerappointed ep inner join exam e on ep.examid=e.exammid
+ where question
+ 
+ 
+select * from examinerappointed ep inner join (exam e inner join examschedule es on e.ScheduleId=es.ScheduleId inner join department d on e.DeptId=d.DeptId) on ep.Examid=e.ExamId inner join examiner exa on ep.examinerid=exa.ExaminerId  where ep.questionBank_ID is null;
+ 
+
+examinerappointed
+
+ExamerAppointedId	varchar(20)	NO
+ ExaminerId	varchar(20)	YES
+Examid	varchar(20)	YES
+questionBank_ID	varchar(20)	YES
+
+
+posting question bank
+
+questionBank_ID	varchar(20)
+TotalMarks	varchar(5)
+ExaminerId	varchar(20)
+TotalQuestions	varchar(5)
+EachQuestionMarks	varchar(5)
+
+QUESTIONA
+
+questionId	varchar(20)   [ questionBank_Id + examinerID   ]
+questionBank_Id	varchar(20)
+question	text
+questionImage	text
+ corrrectOptionId varchar(20)
+
+ 
+OPTIONS              
+
+optionId	varchar(20)  [ questionId + a/b/c/d  ]
+questionId	varchar(20)
+option	text
+optionImage	text
+
+
+==>STEP IN POSTING QQUESTIONBANK---------------------------------------------------------
+
+
+
+
+	 @page examinerExamCatalog 
+->[GETS DETAILS OF EXAM FROM EXAMINERAPOINTED WHERE QUESTIONBANK ARE NOT POSTED] select ep.ExamerAppointedId, ep.Examid,e.ExamName,d.DeptName,e.examDate,es.StartTime ,es.EndTime ,e.TotalMarks,e.Duration from examinerappointed ep inner join (exam e inner join examschedule es on e.ScheduleId=es.ScheduleId inner join department d on e.DeptId=d.DeptId) on ep.Examid=e.ExamId inner join examiner exa on ep.examinerid=exa.ExaminerId  where ep.ExaminerId='"+exauser.getExaminerid()+"' and ep.questionBank_ID is null and e.examdate>CURDATE() ";
+ 
+-> @page createQuestionBank
+  [Gets information from examiner catalog and INSERT into QUESTIONBANK table ]
+  
+  insert into questionbank values('"+qbid+"' , '"+totmarks+"' ,'"+exauser.getExaminerid()+"' , '"+totalquestion+"' , '"+eachQmarks+"')";
+
+->[ Put questionbankId into that examinerappointed table ]
+
+   update examinerappointed set questionBank_ID='"+qbid+"' where examid='"+id+"'"
+
+-> [ insert question details into into question]
+   
+insert into questions values('54321exras','5431' ,'question is what?',null,null);
+
+-> [insert 4 options into option table resembling that question ]
+insert into options values('54321exras_a' , '54321exras' , 'optionA' , null );
+insert into options values('54321exras_b' , '54321exras' , 'optionB' , null );
+insert into options values('54321exras_c' , '54321exras' , 'optionC' , null );
+insert into options values('54321exras_d' , '54321exras' , 'optionD' , null );
+
+-> [ update question table set its correct optionid`]
+
+   update questions set correctOptionId='' where questionid=''
+
+
+
+
+ 
+		  

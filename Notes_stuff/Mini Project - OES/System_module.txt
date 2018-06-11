@@ -1,0 +1,31 @@
+    
+
+System Module:- 
+  [ Login Module , Examination module , gradeGeneration Module ]
+  
+  
+=>Login Module
+
+	- [For Moodle]  gets list of STUDENT ENROLMENT FROM DEPARTMENT and Enrolement is accepted according to student details .
+        [NOTE: Admin already have registered student details(academic,personal) from other system
+          		and so Admin links/verify student moodle enrollment from student details]
+		Here verification is like an enrolled student can only get enrolled in moodle if his details says so 
+		  (eg Academic position is valid and had paid all fees related)  
+
+    - [FOR Competitive] 
+     	gets STUDENT REGISTRATION details(Personal,academics) FROM STUDENT which also include attachments like  student photo , signature , legal documents
+		
+     - Creates student LOGIN DETAILS after successfull registeration and shows him
+
+	
+=>Examination module	
+	
+	
+	- Gets QUESTION BANK details and in randomly way post questions and also option into exam page during the specified date.	
+	- and these exam page will only be opened till period of time when user start attempting exam
+	- Student responses will be tracked and stored
+	
+=>GradeGeneration Module	
+
+	- reviews the responses of student answers for all questions and according to its Marking rule will assign positive marks on correct choice and negative marks on wrong choice accordingly
+	- and will post and shown to student 

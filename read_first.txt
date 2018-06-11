@@ -1,0 +1,14 @@
+Read First:-
+
+About Project:-
+Name= Online examination system
+programming language:- JSP n servlet
+IDE:-Netbeans 
+Server:- Glassfish Server
+DB :- mYSQL workbench 6.3
+  
+  File "mysql_FinalDb.db" contains Import file for Mysql Workbench if to establish this project into whole new PC
+  and include mysql jar file in the project
+  
+
+In PPT Data dictionary and Schema diagram does not contained 100% accurate info, just for understanding

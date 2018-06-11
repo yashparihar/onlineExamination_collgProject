@@ -1,0 +1,33 @@
+About MODULE :-
+
+
+=> ADMIN
+   central role of maintaining the system
+   admin can create a department whose job would be to create exam
+   he also accept and verify the Exam request from departments
+   admin can review report on exams , department , student , examiner ,etc
+
+=> DEPARTMENT
+   his responsibility is to create an exam with details like exam name , exam host(examiner) , schedule ,etc
+   and can also review various exam under his department and student enrolled in it and its assigned examiner
+   
+=> EXAMINER
+   This person is the host of an exam.
+   he is assigned to exam for posting questions , options ,etc for that exam. he is review student appeared for exam and their scored result
+
+=> STUDENT
+  he is the actual candidate or user for this system.
+  he registers providing his personal and acedemic details with his some attachment and then Login credentials are assigned by System then student can login and can enroll in various exam and participate in that examination 
+  
+
+  1 insertion of student details and fetch login credentials
+  2. insertion of exam details and admin gets notification for exam ; he accept then exam is posted in the walls of student upcoming exams uder that perticular department
+  3. due to step 2 ; admin gets notification of accepting exam request (he accepts)
+  4. after step 3 succeeds ; department get notified that his exam request is fullfilled 
+  4.2.                       examiner which was appointed by department gets notified and has responsibilities
+
+  5. due step 4.2 ; examiner has to post question bank before exam date
+  6. students can enroll in these accepted exams
+  6.2  dept and examiner can see records of these student
+ 
+  7. on exam date ; student appears for exam on exam panel

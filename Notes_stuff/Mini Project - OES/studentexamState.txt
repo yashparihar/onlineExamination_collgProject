@@ -1,0 +1,94 @@
+
+//Table name would be <rollno>+<examid>+state
+<CREATING>--
+
+create table rollnoexamstate3 
+(
+StudentEnrollId varchar(20) ,
+questionId varchar(20) ,
+markedOptionId varchar(20)
+);
+
+
+alter table rollnoexamstate3 add constraint rollnoexamstate3_fk0 foreign key(StudentEnrollId) references studentexamenrollment(StudentEnrollId);  
+  
+
+
+alter table rollnoexamstate3 add constraint rollnoexamstate3_fk1 foreign key(questionId) references questions(questionid);  
+
+
+alter table rollnoexamstate3 add constraint rollnoexamstate3_fk2 foreign key(markedOptionId) references options(optionId);
+
+update examinerappointed set questionBank_id='' where examerappointedid='im50s5olm';
+
+delete from questionbank where questionBank_id='m55o49';
+
+
+
+
+-----------------
+<DROPING DATA>--
+
+delete from studentexamappearance where StudentEnrollId='15mca03422111';
+
+delete from s2211115mca034;
+
+ALTER TABLE `s2211115mca034` DROP FOREIGN KEY ses0115mca034_fk0;
+  
+  ALTER TABLE `s2211115mca034` DROP FOREIGN KEY ses0115mca034_fk1;
+ 
+ 
+  ALTER TABLE `s2211115mca034` DROP FOREIGN KEY ses0115mca034_fk2;
+ 
+ 
+drop table s2211115mca034;
+
+>DROPING MARKSHEET<<<--------------------------------------------------------
+
+ update studentexamappearance set studentfinishTime='' where studentenrollid='15mca03422111'; 
+ 
+       
+  update studentexamappearance set examsubmission=0 where studentenrollid='15mca03422111'; 
+      
+
+delete from studentmarksheet where studentEnrollid='15mca03422111';
+
+-------------------------------------------------------------------------------------------
+
+
+
+					
+--------------------------------------------------------------------------------------------------------
+
+insert into rollnoexamstate1 values('5m4',' ',null);
+
+
+update examinerappointed set questionBank_ID='' where  ExamerAppointedId='ysx1exRas'
+
+delete from questionbank where questionBank_ID='sxxR12'  
+
+
+select * from examinerappointed where  ExamerAppointedId='ysx1exRas'
+
+
+
+timer--------------------------------------
+
+update examschedule set StartTime='02:00:00' where ScheduleId='exa11';
+
+update examschedule set endTime='13:55:00' where ScheduleId='exa11';
+
+update exam set examDate='2017-05-03' where examid='exam 101'
+
+
+		om50
+		exam 0404
+		22111
+		dd dde
+
+
+update examschedule set StartTime='00:00:00' where scheduleid='exa11'
+
+update examschedule set endtime ='23:55:00' where scheduleid='exa11'
+
+update exam set examdate='2017-04-28' where examid='em01'

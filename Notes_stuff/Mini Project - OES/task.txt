@@ -1,0 +1,39 @@
+date:- 1-3-17
+
+TASK:--
+
+  1 insertion of student details and fetch login credentials
+  
+  2. insertion of exam details and admin gets notification for exam ; he accept then exam is posted in the walls of student upcoming exams uder that perticular department
+  3. due to step 2 ; admin gets notification of accepting exam request (he accepts)
+  4. after step 3 succeeds ; department get notified that his exam request is fullfilled 
+  4.2.                       examiner which was appointed by department gets notified and has responsibilities
+
+  5. due step 4.2 ; examiner has to post question bank before exam date
+  6. students can enroll in these accepted exams
+  6.2  dept and examiner can see records of these student
+ 
+  7. on exam date ; student appears for exam on exam panel
+--------------
+
+==> MODIFY DEPARTMENTS EXAMCATALOG TO SAME AS ADMINEXAMCATALOG-------->>
+  
+  delete from student where StudentRollno='10001'
+  
+
+  
+  --> admin side : in onlistedexam
+                   show those exam which are yet to start (examdate>curdate() or (examdate=curdate and starttime>curtime() )
+				   
+				    	select e.examid, e.examname,dp.DeptName,e.examDate,e.TotalMarks ,ex.ExaminerName , es.StartTime, (select count(*) from studentexamenrollment where examid=e.ExamId) Enrolled ,ep.questionBank_ID  from exam e inner join examinerappointed ep on e.examid=ep.examid inner join examschedule es on e.ScheduleId=es.ScheduleId inner join examiner ex on e.ExaminerId=ex.ExaminerId inner join department dp on e.DeptId=dp.DeptId where e.examdate>curdate() or ( e.examDate=curdate() and es.starttime>curtime() ) and e.IsItApproved=1 ;
+				   
+				   
+				   
+				   
+  -->            : in ongoing exam
+                  ->show all ongoing exam and how many enrlled in it
+				  
+				select * ,(select count(*) from studentexamenrollment where examid=e.ExamId) Enrolled from exam e inner join examschedule es on e.ScheduleId=es.ScheduleId where e.examdate=curdate() and es.starttime<=curtime() and es.endtime>curtime() ;
+				
+				
+			select e.examid,e.examname,dp.DeptName,e.examDate,e.TotalMarks ,ex.ExaminerName ,es.endtime (select count(*) from studentexamenrollment where examid=e.ExamId) Enrolled ,ep.questionBank_ID  from exam e inner join examinerappointed ep on e.examid=ep.examid inner join examschedule es on e.ScheduleId=es.ScheduleId inner join examiner ex on e.ExaminerId=ex.ExaminerId inner join department dp on e.DeptId=dp.DeptId where e.examdate=curdate() and es.starttime<=curtime() and es.endtime>curtime() and e.IsItApproved=1 ;

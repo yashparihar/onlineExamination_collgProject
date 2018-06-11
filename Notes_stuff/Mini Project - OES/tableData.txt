@@ -1,0 +1,18 @@
+1111	password1	department
+1122	password12	examiner
+5555	password	student
+		
+examiner	
+exRas	jarna	1122	res@nirmauni.ac.in
+
+department
+cs50	computerScience	1111	itnu101	cs50@nirmauni.ac.in
+dep1	developers	1111	ins1	dep1@gmail.com
+
+student
+15mca034	yash	cs50	5555	pari@gmail.com	0	1995-01-07		h3 hostel
+
+
+admin
+yashu	passworda	pari@nirmauni.com	
+	update table exam set examDate='2017-04-01' where ;

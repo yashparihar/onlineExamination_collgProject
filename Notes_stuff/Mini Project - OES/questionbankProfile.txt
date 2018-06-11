@@ -1,0 +1,29 @@
+questionbank profile
+
+
+
+                        <th>Question bank id</th>
+                           <th>TOTAL MARKS</th>
+						   <th>FOR EXAM id </th>
+						   <th> Exam date</th>
+						   <th>total question</th>
+						   <th> each question marks </th>
+						   
+						   
+						   select * from questionbank qb inner join questions q on qb.questionBank_ID=q.questionBank_Id where qb.questionBank_ID=''
+          
+select * from questions q inner join options op on q.questionId=op.questionId where q.questionBank_ID=''
+
+select * from questionbank qb inner join ( questions q inner join options op on q.questionid=op.questionid ) on qb.questionBank_ID=q.questionBank_ID 
+
+
+select * from questions q inner join options op on q.questionId=op.questionId where q.questionBank_ID='404qb10' order by q.questionid
+
+
+delete from examschedule where ScheduleId='exa22am04'
+
+alter table studentexamappearance drop column studentappeared
+
+alter table studentexamappearance modify column studentstarttime time;
+
+alter table studentexamappearance modify column studentendtime time;

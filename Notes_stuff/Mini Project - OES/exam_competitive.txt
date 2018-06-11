@@ -1,0 +1,32 @@
+
+Online examination for COMPETITIVE:-
+
+   MODULE(  Admin , department , Student ) :- 
+    
+=>Admin
+  - can Assign/view/update/delete department and give them recommended rights/authority
+  
+   - can view/update/delete student enrollment details and their performance report
+   
+
+  - FIXED EXAM CATEGORY AS WHOLE(aptitude :- maths , logical reasoning , english , gk ,etc)
+                         				
+   - QUESTION BANKS POSTING DATE is fixed by Admin for all department				
+
+   
+   - EXAM POSTING DATE are fixed by him
+
+						   
+   						   
+=>Department
+
+ -  POST QUESTION BANK, type, options, correct answers on a specific date
+	
+=> Student
+
+    - [NOTE: Student REGISTRATION need to be done on specific time period]
+                Student need to register themselves with personal details and academic details
+                as a part of registration , student need to post their passport size photo , Signature ,doc,etc 
+                and then gets CREDENTIALS(Login details)
+  
+    - Main role is to appear for EXAM , can review his responses to questions
